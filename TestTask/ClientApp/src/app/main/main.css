@@ -1,0 +1,11 @@
+.image-container {
+  display: flex;
+  border: 1px solid gray;
+}
+
+.image-container__item-container img {
+  width: 200px;
+  height: 100px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}

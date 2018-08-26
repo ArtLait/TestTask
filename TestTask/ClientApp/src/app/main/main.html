@@ -1,0 +1,22 @@
+<h1>Counter</h1>
+
+<div class="img-container">
+  <div *ngFor="let item of fileService.images" class="image-container__item-container">
+    <img src="{{'data:image/gif;base64,' + item.value}}" alt="{{item.name}}" />
+    {{item.name}}
+  </div>  
+</div>
+
+<div><img id="newImg" src="{{newImgSrc}}" /></div>
+<div id="result">Result: </div>
+<div id="result1">Result1: </div>
+
+<input type="file" (change)="onFileChange($event)" #fileInput>
+
+<p>This is a simple example of an Angular component.</p>
+
+<p>Count of images: <strong>{{ fileService.images.length  }}</strong></p>
+
+<button (click)="incrementCounter()">Increment</button>
+
+<map [latitude]="12" [longtitude]="12">Map</map>
