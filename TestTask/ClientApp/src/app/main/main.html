@@ -1,6 +1,6 @@
 <h1>Counter</h1>
 
-<div class="img-container">
+<div class="image-container">
   <div *ngFor="let item of fileService.images" class="image-container__item-container">
     <img src="{{'data:image/gif;base64,' + item.value}}" alt="{{item.name}}" />
     {{item.name}}

@@ -20,27 +20,11 @@ namespace TestTask.Controllers
         {
             return fileService.GetFiles();
         }
-        
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-        
+
         [HttpPost]
         public void Post([FromBody] FileModel file)
         {
             fileService.PostFile(file);
-        }
-        
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

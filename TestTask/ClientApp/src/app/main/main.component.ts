@@ -5,8 +5,8 @@ import EXIF = require('exif-js');
 
 @Component({
   selector: 'main-component',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  templateUrl: './main.html',
+  styleUrls: ['./main.css']
 })
 export class MainComponent implements OnInit {
   currentCount = 0;

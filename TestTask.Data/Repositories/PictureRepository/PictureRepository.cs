@@ -7,25 +7,27 @@ using TestTask.Data.Models;
 
 namespace TestTask.Data.Repositories
 {
-    public class PictureRepository : IRepository<Picture>
+    public class PictureRepository : GenericRepository<PictureContext, Picture>
     {
         private IPictureContext context;
 
-        public PictureRepository(IPictureContext pictureContext)
+        public PictureRepository(IPictureContext pictureContext, IUnitOfWork<PictureContext, Picture> unitOfWork) 
+            : base(unitOfWork)
         {
             context = pictureContext;
         }
 
-        public void Create(Picture item)
+        public override void Create(Picture item)
         {
             if (item == null)
             {
                 throw new Exception("Picture is empty");
             }
             context.Pictures.Add(item);
+            context.SaveChanges();
         }
 
-        public void Delete(Picture item)
+        public override void Delete(Picture item)
         {
             if (item == null)
             {
@@ -34,7 +36,7 @@ namespace TestTask.Data.Repositories
             context.Pictures.Remove(item);
         }
 
-        public Picture Get(int id)
+        public override Picture Get(int id)
         {
             var picture = context.Pictures.Find(id);
             if (picture == null)
@@ -44,7 +46,7 @@ namespace TestTask.Data.Repositories
             return picture;
         }
 
-        public IEnumerable<Picture> GetAll()
+        public override IEnumerable<Picture> GetAll()
         {
             var pictures = context.Pictures;
             if (pictures == null)
@@ -54,38 +56,13 @@ namespace TestTask.Data.Repositories
             return pictures;
         }
 
-        public void Update(Picture item)
+        public override void Update(Picture item)
         {
             if (item == null)
             {
                 throw new Exception("Picture is empty");
             }
             context.EntryContext(item);
-        }
-
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-
-        private bool disposed = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

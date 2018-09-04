@@ -17,7 +17,7 @@ import { AgmCoreModule } from '@agm/core';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
+    MainComponent,
     MapComponent
   ],
   imports: [
