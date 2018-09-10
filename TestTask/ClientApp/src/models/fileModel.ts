@@ -4,4 +4,5 @@ export class FileModel {
   value: string;
   gps: string;
   exif: string;
+  description: string;
 }

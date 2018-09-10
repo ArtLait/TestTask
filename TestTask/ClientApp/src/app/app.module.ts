@@ -7,17 +7,20 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { MainComponent } from './main/main.component';
+import { PicturesComponent } from './pictures/pictures.component';
 import { FileService } from '../services/file.service';
 import { MapComponent } from './google-map/map.component';
+import { TextFormatter } from './textFormatter/textFormatter';
 import { AgmCoreModule } from '@agm/core';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    MainComponent,
+    PicturesComponent,
+    TextFormatter,
     MapComponent
   ],
   imports: [
@@ -26,12 +29,13 @@ import { AgmCoreModule } from '@agm/core';
     FormsModule,
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent, pathMatch: 'full' },
-      { path: '', component: MainComponent },
+      { path: '', component: PicturesComponent },
       { path: 'google-map', component: MapComponent}
     ]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBCIOgDee3t7dpxUNR7NRX6UKb6suLYv1U'
-    })
+    }),
+    CKEditorModule
   ],
   providers: [FileService],
   bootstrap: [AppComponent]

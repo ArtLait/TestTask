@@ -16,9 +16,7 @@ export class FileService {
 
   images: FileModel[] = [];
 
-  uploadImg(file: FileModel) {
-    console.log('file', file);
-   
+  uploadImg(file: FileModel) {   
     this.http.post<any>(this.baseUrl + 'api/file', file, this.httpOptions).subscribe(responce => {
       this.loadImages();
     }, error => console.error(error));
@@ -26,11 +24,7 @@ export class FileService {
 
   loadImages() {
     this.http.get<FileModel[]>(this.baseUrl + 'api/file').subscribe((resp: FileModel[]) => {
-      if (this.images.length != 0)
-        this.images.concat(resp)
-      else this.images = resp;
-
-      console.log('this.images', this.images, 'this.resp', resp);
+       this.images = resp;
     });
   }
 }

@@ -1,0 +1,38 @@
+<h1>Pictures</h1>
+
+<div class="image-container" *ngIf="fileService.images.length > 0;else loading">
+  <div *ngFor="let item of fileService.images" (click)="selectImage(item)" class="image-container__item-container">
+    <img src="{{'data:image/gif;base64,' + item.value}}" alt="{{item.name}}" />
+  </div>  
+</div>
+
+<ng-template #loading>
+  Pictures loading...
+</ng-template>
+
+<h2 class="count-of-images">Count of images: <strong>{{ fileService.images.length  }}</strong></h2>
+
+<div class="selected-image-container">
+  <div *ngIf="currentImg.value" class="selected-image"><img id="newImg" src="{{'data:image/gif;base64,' + currentImg.value}}" /></div>
+
+  <div *ngIf="description.Model; else emptyData" class="description-container">
+    <div>Image info</div>
+    <div>Model: {{description.Model}}</div>
+    <div>ExifVersion: {{description.ExifVersion}}</div>
+    <div>DateTime: {{description.DateTime}}</div>
+    <div>ExposureTime: {{description.ExposureTime}}</div>
+  </div>
+  <ng-template #emptyData>The image does not have any data!</ng-template>
+  <div class="selected-image-container__map">
+    <map *ngIf="latitude && longtitude" [latitude]="latitude" [longtitude]="longtitude">Map</map>
+  </div>
+</div>
+
+<text-formatter [ckeditorContent]="currentImg.description"></text-formatter>
+
+<div class="upload-container">
+  <input type="file" (change)="onFileChange($event)" #fileInput>
+  <button *ngIf="isUpload" (click)="preview()">Watch preview</button>
+  <button *ngIf="isUpload" (click)="upload()">Upload</button>
+</div>
+

@@ -1,0 +1,10 @@
+<span>User image description: </span>
+<button (click)="edit()">Edit description</button>
+<button (click)="getData()"></button>
+<div *ngIf="isEditDescription;else artem">
+  Artem
+<div>
+<ng-template #artem>
+  Vanya
+  <div style="color:red">some...</div>
+</ng-template>
